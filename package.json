@@ -1,12 +1,17 @@
 {
-  "name": "event-store-driver",
-  "version": "1.0.0",
+  "name": "@zilink/event-store-driver",
+  "version": "1.0.1",
   "description": "Event Store Driver",
   "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsc --build --clean; tsc -p tsconfig.build.json",
-    "watch": "tsc --watch -p tsconfig.json"
+    "watch": "tsc --watch -p tsconfig.json",
+    "prepublish": "npm run build"
   },
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zilink/event-store-driver.git"
