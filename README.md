@@ -61,3 +61,6 @@ Data sent:
   lastName: 'black'
 }
 ```
+
+# TODO
+- Add configs to autogenerate useful variables like correlationId, etc.
