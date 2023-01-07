@@ -12,20 +12,20 @@ EventStoreDriver.factory(options);
 
 Options:
 
-| Name          | Type   | Default | Description                                        |
-|---------------|--------|---------|----------------------------------------------------|
-| eventStoreUrl | string |         | The URL of EventStore                              |
-| data          | object |         | Default data to send to EventStore on each request |
+| Name              | Type   | Default | Description                                                                                                      |
+|-------------------|--------|---------|------------------------------------------------------------------------------------------------------------------|
+| eventStoreUrl     | string |         | The URL of EventStore                                                                                            |
+| data              | object |         | Predefined data to send to EventStore on each request.                                                           |
+| autoCorrelationId | string | uuid-v4 | Enable auto generation of correlation ID. Options: `uuid-v4`. The property of correlation ID is `correlationId`. |
 
-Examples:
+### Set predefined data globally
 
 ```typescript
 EventStoreDriver.factory({
-  eventStoreUrl: 'http://event-store:4343',
   data: {
-    Microservice: 'users',
-    Pid: process.pid,
-  },
+    microservice: 'users',
+    pid: process.pid,
+  }
 });
 ```
 
@@ -35,8 +35,8 @@ EventStoreDriver.factory({
 const eventStoreDriver = new EventStoreDriver();
 
 eventStoreDriver.setData({
-  CorrelationId: '123456',
-  UserId: 9876,
+  userId: 9876,
+  sessionId: 'df1a3d48-e44e-4714-920e-576e29f54e21'
 });
 ```
 
@@ -48,19 +48,3 @@ await eventStoreDriver.send('UserUpdated', {
   lastName: 'black',
 });
 ```
-
-Data sent:
-
-```
-{
-  Microservice: 'users',
-  Pid: 1234,
-  CorrelationId: '123456',
-  UserId: '9876',
-  firstName: 'joe',
-  lastName: 'black'
-}
-```
-
-# TODO
-- Add configs to autogenerate useful variables like correlationId, etc.
