@@ -35,7 +35,7 @@ export class EventStoreDriver {
   async send(event: string, data: { [p: string]: unknown }): Promise<void> {
     try {
       data = Object.assign(
-        { time: new Date().toISOString() },
+        { event: event, time: new Date().toISOString() },
         this.opts.data,
         this.preDefinedData,
         data,
