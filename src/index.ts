@@ -11,7 +11,7 @@ export class EventStoreDriver {
   private static options?: eventStoreOptions;
 
   private readonly opts: eventStoreOptions;
-  private preDefinedData: { [p: string]: unknown } = {};
+  private preDefinedData: { [p: string]: never } = {};
 
   constructor() {
     if (!EventStoreDriver.options)
@@ -25,6 +25,10 @@ export class EventStoreDriver {
         default:
           this.setData({ correlationId: UUIDv4() });
       }
+  }
+
+  getCorrelationId(): string | undefined {
+    return this.preDefinedData.correlationId;
   }
 
   setData(data: { [p: string]: unknown }): this {
