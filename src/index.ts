@@ -36,7 +36,8 @@ export class EventStoreDriver {
     return this;
   }
 
-  async send(event: string, data: { [p: string]: unknown }): Promise<void> {
+  async send<TypeOfData>(event: string, data: { [Key in keyof TypeOfData]: TypeOfData[Key] }
+  ): Promise<void> {
     try {
       data = Object.assign(
         { event: event, time: new Date().toISOString() },

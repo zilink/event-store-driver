@@ -43,13 +43,19 @@ eventStoreDriver.setData({
 ### Send event
 
 ```typescript
-await eventStoreDriver.send('UserUpdated', {
+type User = {
+  firstName: string;
+  lastName: string;
+}
+
+await eventStoreDriver.send<User>('UserUpdated', {
   firstName: 'joe',
   lastName: 'black',
 });
 ```
 
 - The `event` and `time` properties is auto-generated
+- `send` method is generic and data type should provide as object.
 
 ## Example
 

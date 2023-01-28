@@ -1,6 +1,6 @@
 {
   "name": "@zilink/event-store-driver",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Event Store Driver",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
